@@ -4,13 +4,15 @@ interface ButtonProps {
     /** valor do butão */
     value:string,
     /** callback */
-    onClick: () => void
+    onClick: () => void,
+    /** button identification */
+    id: string
 }
 
 const Button: FC<ButtonProps> = (props) => {
     return (<>
         <button
-            id="play"
+            id={props.id}
             onClick={() => props.onClick()}
         >
         {props.value}
