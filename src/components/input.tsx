@@ -5,14 +5,15 @@ interface InputProps {
   value: string,
   /** Descrição do input */
   placeholder?: string
-
+  /** input identification */
+  id: string
 }
 
 
 const Input: FC<InputProps> = (prop) => {
   return (
     <input
-      id="Nickname"
+      id={prop.id}
       placeholder={prop.placeholder}
       defaultValue={prop.value}
     />
