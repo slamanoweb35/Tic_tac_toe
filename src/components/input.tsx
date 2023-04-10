@@ -14,7 +14,7 @@ const Input: FC<InputProps> = (prop) => {
     <input
       id="Nickname"
       placeholder={prop.placeholder}
-      value={prop.value}
+      defaultValue={prop.value}
     />
   );
 }
