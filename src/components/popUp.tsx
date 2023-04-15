@@ -2,6 +2,8 @@ import { FC } from "react";
 import Button from "./button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import data_popUp from "../types/dataPopUp";
+import send from "../websocket/send";
 import "../css/popUp.css"
 
 interface PopUpProp {
@@ -21,7 +23,7 @@ const PopUp: FC<PopUpProp> = (prop) => {
   let [height,setHeight] = useState(0);
 
   useEffect(() => {
-    if (progress == 5) {setProgress(0);setActive(true)}
+    if (progress == 5) {setProgress(0);setActive(true);data_popUp.hidden = true}
     if (active == true) return;
 
     prop.type == "invite" ? setHeight(19) : setHeight(13);
@@ -46,14 +48,26 @@ const PopUp: FC<PopUpProp> = (prop) => {
         <Button
           id="accepted"
           value="Accepted"
-          onClick={() => { }}
+          onClick={() => { 
+            setProgress(5);
+            send({
+              type:"ACCEPTED",
+              msg:{uuid:data_popUp.id}
+            })
+          }}
         />
       </Link>
 
       <Button
         id="denied"
         value="Denied"
-        onClick={() => { }}
+        onClick={() => { 
+          setProgress(5);
+          send({
+            type:"DENIED",
+            msg:{uuid:data_popUp.id}
+          })
+        }}
       />
 
     </> : undefined}
