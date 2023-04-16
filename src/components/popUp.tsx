@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import data_popUp from "../types/dataPopUp";
 import send from "../websocket/send";
+import play from "../types/play";
 import "../css/popUp.css"
 
 interface PopUpProp {
@@ -50,6 +51,8 @@ const PopUp: FC<PopUpProp> = (prop) => {
           value="Accepted"
           onClick={() => { 
             setProgress(5);
+            play.playing = true;
+            
             send({
               type:"ACCEPTED",
               msg:{uuid:data_popUp.id}
@@ -63,6 +66,8 @@ const PopUp: FC<PopUpProp> = (prop) => {
         value="Denied"
         onClick={() => { 
           setProgress(5);
+          play.playing = false;
+
           send({
             type:"DENIED",
             msg:{uuid:data_popUp.id}
