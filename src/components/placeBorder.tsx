@@ -1,19 +1,29 @@
 import play from "../types/play"
 import currentRoom from "../types/room"
 import perfil from "../types/account"
+import { FC } from "react"
 import "../css/placeBorder.css"
 
-const Place_border = () => {
+interface PlaceBorderProp {
+  /** your points*/
+  you:number,
+  /** empty on the match*/
+  empty:number,
+  /** opponent points*/
+  opponent:number,
+}
+
+const Place_border:FC<PlaceBorderProp> = (prop) => {
   return (<>
     {play.playing == true ? (<div id="place_border">
       <div id="you">
-        {perfil.getNickname()} <span className="Span">{0}</span>
+        {perfil.getNickname()} <span className="Span">{prop.you}</span>
       </div>
       <div id="empty">
-        Empty <span className="Span" id="middle">{0}</span>
+        Empty <span className="Span" id="middle">{prop.empty}</span>
       </div>
       <div id="opponent">
-        {currentRoom.opponent} <span className="Span">{0}</span>
+        {currentRoom.opponent} <span className="Span">{prop.opponent}</span>
       </div>
     </div>)
       : <h1 id="warn">You are not inside a room</h1>}
