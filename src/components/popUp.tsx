@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import data_popUp from "../types/dataPopUp";
 import send from "../websocket/send";
 import play from "../types/play";
+import currentRoom from "../types/room";
 import "../css/popUp.css"
 
 interface PopUpProp {
@@ -52,6 +53,7 @@ const PopUp: FC<PopUpProp> = (prop) => {
           onClick={() => { 
             setProgress(5);
             play.playing = true;
+            currentRoom.opponent = prop.nick
             
             send({
               type:"ACCEPTED",
