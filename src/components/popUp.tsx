@@ -53,7 +53,7 @@ const PopUp: FC<PopUpProp> = (prop) => {
           onClick={() => { 
             setProgress(5);
             play.playing = true;
-            currentRoom.opponent = prop.nick
+            currentRoom.opponent.nick = prop.nick
             
             send({
               type:"ACCEPTED",
