@@ -23,7 +23,7 @@ const Place_border:FC<PlaceBorderProp> = (prop) => {
         Empty <span className="Span" id="middle">{prop.empty}</span>
       </div>
       <div id="opponent">
-        {currentRoom.opponent} <span className="Span">{prop.opponent}</span>
+        {currentRoom.opponent.nick} <span className="Span">{prop.opponent}</span>
       </div>
     </div>)
       : <h1 id="warn">You are not inside a room</h1>}
