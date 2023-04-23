@@ -1,46 +1,98 @@
 import { FC } from "react";
 import "../css/game.css";
+import positions from "../types/position";
 
 interface BarGameProps {
-    /** column one position 1*/
-    position1: string,
-    /** column one position 2*/
-    position2: string,
-    /** column one position 3*/
-    position3: string,
+    /** callback of column one position 1*/
+    onClick1: () => void,
+    /** callback of column one position 2*/
+    onClick2: () => void,
+    /** callback of column one position 3*/
+    onClick3: () => void,
 
-    /** column two position 1*/
-    position4: string,
-    /** column two position 2*/
-    position5: string,
-    /** column two position 3*/
-    position6: string,
+    /** callback of column two position 1*/
+    onClick4: () => void,
+    /** callback of column two position 2*/
+    onClick5: () => void,
+    /** callback of column two position 3*/
+    onClick6: () => void,
 
-    /** column three position 1*/
-    position7: string,
-    /** column three position 2*/
-    position8: string,
-    /** column three position 3*/
-    position9: string,
+    /** callback of column three position 1*/
+    onClick7: () => void,
+    /** callback of column three position 2*/
+    onClick8: () => void,
+    /** callback of column three position 3*/
+    onClick9: () => void,
 }
 
 const BarGame: FC<BarGameProps> = (prop) => {
     return (<>
         <div className="container">
             <div className="coll">
-                <div id="col1" className="cubo">{prop.position1}</div>
-                <div id="col2" className="cubo">{prop.position2}</div>
-                <div id="col3" className="cubo">{prop.position3}</div>
+                <div
+                    id="col1"
+                    onClick={() => prop.onClick1()}
+                    className="cubo">
+                    {positions.collumn1.pos1}
+                </div>
+
+                <div
+                    id="col2"
+                    onClick={() => prop.onClick2()}
+                    className="cubo">
+                    {positions.collumn1.pos2}
+                </div>
+
+                <div
+                    id="col3"
+                    onClick={() => prop.onClick3()}
+                    className="cubo">
+                    {positions.collumn1.pos3}
+                </div>
             </div>
             <div className="coll">
-                <div id="col4" className="cubo">{prop.position4}</div>
-                <div id="col5" className="cubo">{prop.position5}</div>
-                <div id="col6" className="cubo">{prop.position6}</div>
+                <div
+                    id="col4"
+                    onClick={() => prop.onClick4()}
+                    className="cubo">
+                    {positions.collumn2.pos1}
+                </div>
+
+                <div
+                    id="col5"
+                    onClick={() => prop.onClick5()}
+                    className="cubo">
+                    {positions.collumn2.pos2}
+                </div>
+
+                <div
+                    id="col6"
+                    onClick={() => prop.onClick6()}
+                    className="cubo">
+                    {positions.collumn2.pos3}
+                </div>
             </div>
             <div className="coll">
-                <div id="col7" className="cubo">{prop.position7}</div>
-                <div id="col8" className="cubo">{prop.position8}</div>
-                <div id="col9" className="cubo">{prop.position9}</div>
+                <div
+                    id="col7"
+                    onClick={() => prop.onClick7()}
+                    className="cubo">
+                    {positions.collumn3.pos1}
+                </div>
+
+                <div
+                    id="col8"
+                    onClick={() => prop.onClick8()}
+                    className="cubo">
+                    {positions.collumn3.pos2}
+                </div>
+
+                <div
+                    id="col9"
+                    onClick={() => prop.onClick9()}
+                    className="cubo">
+                    {positions.collumn3.pos3}
+                </div>
             </div>
         </div>
     </>)
