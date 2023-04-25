@@ -8,6 +8,7 @@ const CallPopUp = () => {
       message={data_popUp.message}
       nick={data_popUp.nick}
       type={data_popUp.type}
+      uuid={data_popUp.id}
     />
   </>)
 }
