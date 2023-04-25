@@ -16,7 +16,9 @@ interface PopUpProp {
   /** player name*/
   nick:string,
   /** message*/
-  message: string
+  message: string,
+  /** player identification*/
+  uuid:string
 }
 
 const PopUp: FC<PopUpProp> = (prop) => {
@@ -54,6 +56,7 @@ const PopUp: FC<PopUpProp> = (prop) => {
             setProgress(5);
             play.playing = true;
             currentRoom.opponent.nick = prop.nick
+            currentRoom.opponent.uuid = prop.uuid
             
             send({
               type:"ACCEPTED",
