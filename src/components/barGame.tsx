@@ -1,6 +1,7 @@
-import { FC } from "react";
-import "../css/game.css";
+import { FC, useEffect, useReducer, useState } from "react";
 import positions from "../types/position";
+import { UpdateBarGame } from "../pages/Game";
+import "../css/game.css";
 
 interface BarGameProps {
     /** callback of column one position 1*/
@@ -26,6 +27,21 @@ interface BarGameProps {
 }
 
 const BarGame: FC<BarGameProps> = (prop) => {
+    var [pos, setPos] = useState(positions);
+    var [, forceUpdate] = useReducer(y => y + 1, 0);
+
+    useEffect(() => {
+        let time = setInterval(() => {
+            if (!UpdateBarGame.update) return;
+
+            UpdateBarGame.update = false;
+            setPos(positions);
+            forceUpdate();
+        },500)
+
+        return () => clearInterval(time);
+    })
+
     return (<>
         <div className="container">
             <div className="coll">
@@ -33,21 +49,21 @@ const BarGame: FC<BarGameProps> = (prop) => {
                     id="col1"
                     onClick={() => prop.onClick1()}
                     className="cubo">
-                    {positions.collumn1.pos1}
+                    {pos.collumn1.pos1}
                 </div>
 
                 <div
                     id="col2"
                     onClick={() => prop.onClick2()}
                     className="cubo">
-                    {positions.collumn1.pos2}
+                    {pos.collumn1.pos2}
                 </div>
 
                 <div
                     id="col3"
                     onClick={() => prop.onClick3()}
                     className="cubo">
-                    {positions.collumn1.pos3}
+                    {pos.collumn1.pos3}
                 </div>
             </div>
             <div className="coll">
@@ -55,21 +71,21 @@ const BarGame: FC<BarGameProps> = (prop) => {
                     id="col4"
                     onClick={() => prop.onClick4()}
                     className="cubo">
-                    {positions.collumn2.pos1}
+                    {pos.collumn2.pos1}
                 </div>
 
                 <div
                     id="col5"
                     onClick={() => prop.onClick5()}
                     className="cubo">
-                    {positions.collumn2.pos2}
+                    {pos.collumn2.pos2}
                 </div>
 
                 <div
                     id="col6"
                     onClick={() => prop.onClick6()}
                     className="cubo">
-                    {positions.collumn2.pos3}
+                    {pos.collumn2.pos3}
                 </div>
             </div>
             <div className="coll">
@@ -77,21 +93,21 @@ const BarGame: FC<BarGameProps> = (prop) => {
                     id="col7"
                     onClick={() => prop.onClick7()}
                     className="cubo">
-                    {positions.collumn3.pos1}
+                    {pos.collumn3.pos1}
                 </div>
 
                 <div
                     id="col8"
                     onClick={() => prop.onClick8()}
                     className="cubo">
-                    {positions.collumn3.pos2}
+                    {pos.collumn3.pos2}
                 </div>
 
                 <div
                     id="col9"
                     onClick={() => prop.onClick9()}
                     className="cubo">
-                    {positions.collumn3.pos3}
+                    {pos.collumn3.pos3}
                 </div>
             </div>
         </div>
