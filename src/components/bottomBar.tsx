@@ -1,22 +1,19 @@
 import { Link } from "react-router-dom"
-import play from "../icon/play.png"
-import person from "../icon/person.png"
-import mail from "../icon/carta.png"
 import "../css/bottomBar.css"
 
 const BottomBar = () => {
   return (<div id="_bottomBar">
 
     <Link to="/multiplayer">
-      <img src={mail} />
+      <img src={"/carta.png"} />
     </Link>
 
     <Link to="/playing">
-      <img src={play} />
+      <img src={"/play.png"} />
     </Link>
 
     <Link to="/account">
-      <img src={person} />
+      <img src={"/person.png"} />
     </Link>
 
   </div>)
