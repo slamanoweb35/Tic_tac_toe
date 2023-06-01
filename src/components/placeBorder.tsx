@@ -1,12 +1,15 @@
-import play from "../types/play"
 import currentRoom from "../types/room"
 import perfil from "../types/account"
-import { useReducer, useEffect, useState } from "react"
 import updatePlaceBorder from "../types/updatePlaceBorder"
 import place_border from "../types/placeBorder"
+import { useReducer, useEffect, useState, FC } from "react"
 import "../css/placeBorder.css"
 
-const Place_border = () => {
+interface Place_Border_Props {
+  active:boolean
+}
+
+const Place_border:FC<Place_Border_Props> = ({active}) => {
   var [points, setPoints] = useState(place_border);
   var [, forceUpdate] = useReducer(some => some + 1, 0);
 
@@ -17,13 +20,13 @@ const Place_border = () => {
       updatePlaceBorder.update = false;
       setPoints(place_border);
       forceUpdate();
-    },500);
+    },1000);
 
     return () => clearInterval(time);
   })
 
   return (<>
-    {play.playing == true ? (<div id="place_border">
+    {active == true ? (<div id="place_border">
       <div id="you">
         {perfil.getNickname()} <span className="Span">{points.you}</span>
       </div>
