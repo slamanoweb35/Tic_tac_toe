@@ -20,6 +20,8 @@ const RedirectClient = () => {
 
         return () => clearInterval(time);
     })
+
+    return (<></>)
 }
 
 export default RedirectClient;
