@@ -1,5 +1,6 @@
 import callInfo from "../types/callAlert";
 import { useState,useReducer,useEffect } from "react";
+import H1 from "./title";
 import "../css/alert.css";
 
 const Info = () => {
@@ -15,7 +16,7 @@ const Info = () => {
     })
 
     return (<>
-        <h1 id="warn2" hidden={hidden}>{callInfo.message}</h1>
+        <H1 id="warn2" hidden={hidden} value={callInfo.message} />
     </>)
 }
 
