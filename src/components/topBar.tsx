@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { FC } from "react";
+import H1 from "./title";
 import "../css/topBar.css"
 
 interface TopBarProps {
@@ -15,7 +16,7 @@ const TopBar: FC<TopBarProps> = (props) => {
       <img src={"/arrow_back.png"} id="arrow"/>
     </Link>
 
-    <h1>{props.pageName}</h1>
+    <H1 id="NamePage" value={props.pageName}/>
 
     <Link to="/notification">
       <img src={"/bell.png"} id="bell"/>
