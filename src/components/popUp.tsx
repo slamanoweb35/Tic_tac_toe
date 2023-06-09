@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import data_popUp from "../types/dataPopUp";
 import send from "../websocket/send";
-import play from "../types/play";
 import currentRoom from "../types/room";
 import "../css/popUp.css"
 
@@ -14,34 +13,34 @@ interface PopUpProp {
   /** appear popup*/
   hidden: boolean,
   /** player name*/
-  nick:string,
+  nick: string,
   /** message*/
   message: string,
   /** player identification*/
-  uuid:string
+  uuid: string
 }
 
 const PopUp: FC<PopUpProp> = (prop) => {
   let [active, setActive] = useState(prop.hidden)
-  let [progress,setProgress] = useState(0)
-  let [height,setHeight] = useState(0);
+  let [progress, setProgress] = useState(0)
+  let [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (progress == 5) {setProgress(0);setActive(true);data_popUp.hidden = true}
+    if (progress == 5) { setProgress(0); setActive(true); data_popUp.hidden = true }
     if (active == true) return;
 
     prop.type == "invite" ? setHeight(19) : setHeight(13);
 
     let time = setInterval(() => {
       setProgress(progress += 1);
-    },1000);
-    
+    }, 1000);
+
     return () => clearInterval(time);
   }, [progress])
 
-  return (<div id="popUp_body" hidden={active} style={{height:height + "%"}}>
+  return (<div id="popUp_body" hidden={active} style={{ height: height + "%" }}>
     <div id="progress_body">
-      <div id="progress" style={{width:+100-(progress*20)+"%"}}></div>
+      <div id="progress" style={{ width: +100 - (progress * 20) + "%" }}></div>
     </div>
 
     <p id="_nick">{prop.nick}</p>
@@ -52,15 +51,19 @@ const PopUp: FC<PopUpProp> = (prop) => {
         <Button
           id="accepted"
           value="Accepted"
-          onClick={() => { 
+          onClick={() => {
             setProgress(5);
-            play.playing = true;
-            currentRoom.opponent.nick = prop.nick
-            currentRoom.opponent.uuid = prop.uuid
-            
+
+            setTimeout(() => {
+              data_popUp.hidden = false;
+              console.log(prop.nick)
+              currentRoom.opponent.nick = prop.nick
+              currentRoom.opponent.uuid = prop.uuid
+            },1000 * 2)
+
             send({
-              type:"ACCEPTED",
-              msg:{uuid:data_popUp.id}
+              type: "ACCEPTED",
+              msg: { uuid: data_popUp.id }
             })
           }}
         />
@@ -69,13 +72,13 @@ const PopUp: FC<PopUpProp> = (prop) => {
       <Button
         id="denied"
         value="Denied"
-        onClick={() => { 
+        onClick={() => {
           setProgress(5);
-          play.playing = false;
+          data_popUp.hidden = false;
 
           send({
-            type:"DENIED",
-            msg:{uuid:data_popUp.id}
+            type: "DENIED",
+            msg: { uuid: data_popUp.id }
           })
         }}
       />
