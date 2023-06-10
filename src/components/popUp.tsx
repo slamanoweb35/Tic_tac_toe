@@ -53,10 +53,10 @@ const PopUp: FC<PopUpProp> = (prop) => {
           value="Accepted"
           onClick={() => {
             setProgress(5);
-
+            setActive(true);
+            
             setTimeout(() => {
-              data_popUp.hidden = false;
-              console.log(prop.nick)
+              data_popUp.hidden = true;
               currentRoom.opponent.nick = prop.nick
               currentRoom.opponent.uuid = prop.uuid
             },1000 * 2)
@@ -74,7 +74,8 @@ const PopUp: FC<PopUpProp> = (prop) => {
         value="Denied"
         onClick={() => {
           setProgress(5);
-          data_popUp.hidden = false;
+          setActive(true);
+          data_popUp.hidden = true;
 
           send({
             type: "DENIED",
