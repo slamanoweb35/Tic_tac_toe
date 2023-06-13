@@ -14,6 +14,7 @@ dist-ssr
 *.json
 *.config.ts
 *.lock
+*.d.ts
 
 # Editor directories and files
 .vscode/*
