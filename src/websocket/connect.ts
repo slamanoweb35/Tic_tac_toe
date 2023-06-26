@@ -1,4 +1,4 @@
-const url = `ws://${location.hostname}:3000`;
+const url = `wss://${location.hostname}:3000`;
 const ws = new WebSocket(url);
 
 console.log("url:",url)
