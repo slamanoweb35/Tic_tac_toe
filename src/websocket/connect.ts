@@ -1,4 +1,4 @@
-const url = `wss://${location.hostname}`;
+const url = `wss://${"backend-ommm.onrender.com"}`;
 const ws = new WebSocket(url);
 
 console.log("url:",url)
